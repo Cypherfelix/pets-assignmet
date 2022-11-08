@@ -8,7 +8,7 @@ public class PetWriter {
             FileWriter fw = new FileWriter(path);
 
             for (Pet pet : pets){
-                fw.write(pet.toString() + "\n");
+                fw.write(pet.getType() + "\t" + pet.getName() + "\t" + pet.getAge() + "\t" + pet.getWeight() + "\n");
             }
             System.out.println("The pets were saved to the file.");
             fw.close();
@@ -19,6 +19,8 @@ public class PetWriter {
     }
 
     public static void writeToScreen(ArrayList<Pet> pets){
+        pets.sort(Pet::compareTo);
+        System.out.println("Here is your list of pets:");
         for (Pet pet : pets){
             System.out.println(pet);
         }

@@ -5,7 +5,7 @@ public abstract class Pet implements Comparable<Pet> {
     private int age;
     private double weight;
     private Random rand;
-    private int eat,sleep,attention;
+    private int eat,sleep,attention,curHour;
 
     public Pet(String name, int age, double weight) {
         this.name = name;
@@ -40,7 +40,7 @@ public abstract class Pet implements Comparable<Pet> {
 
 
     public boolean needsFood() {
-        return rand.nextInt(25) == eat;
+        return rand.nextInt(25) <= eat;
     }
 
     public void setEat(int eat) {
@@ -48,7 +48,7 @@ public abstract class Pet implements Comparable<Pet> {
     }
 
     public boolean isSleeping() {
-        return rand.nextInt(25) == sleep;
+        return rand.nextInt(25) <= sleep;
     }
 
     public void setSleep(int sleep) {
@@ -56,24 +56,34 @@ public abstract class Pet implements Comparable<Pet> {
     }
 
     public boolean needAttention() {
-        return rand.nextInt(25) == attention;
+        return rand.nextInt(25) <= attention;
     }
 
     public void setAttention(int attention) {
         this.attention = attention;
     }
 
+    public void setCurHour(int curHour) {
+        this.curHour = curHour;
+    }
+
+    public abstract void initializeActions();
+
     public abstract String getType();
+
+    public Random getRand() {
+        return rand;
+    }
 
     @Override
     public int compareTo(Pet o) {
-        return o.getName().compareTo(this.getName());
+        return this.getName().compareTo(o.getName());
     }
 
     public abstract String act();
 
     @Override
     public String toString() {
-        return getName() + "\t" + getAge() + "\t" + getWeight();
+        return String.format("%-10s %-5d %-5.2f",getName(),getAge(),getWeight());
     }
 }

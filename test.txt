@@ -1,0 +1,4 @@
+Cat	Aaron	5	17.25
+Dog	Brody	11	22.5
+Dog	Felipe	4	34.75
+Fish	Julio	1	0.5
